@@ -1,125 +1,140 @@
 #include <iostream>
 #include <clocale>
 #include <string>
+#include <fcntl.h>
+#include <io.h>
 #include <Windows.h>
 using namespace std;
 
 int main()
 {
-    int x1, x2;
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stdin), _O_U16TEXT);
+    int x1, x2, ax1, ax2;
     setlocale(LC_CTYPE, "ru_RU.UTF-8");
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
 
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> x1;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> x2;
+    wcout << L"Ââåäèòå öåëîå ÷èñëî: "; wcin >> x1;
+    wcout << L"Ââåäèòå öåëîå ÷èñëî: "; wcin >> x2;
+    ax1 = x1;
+    ax2 = x2;
 
-    //for (int a = 0; a < 2; a++)
     if (-100 > x1 || x1 > 100 || -100 > x2 || x2 > 100)
-       {       
-           std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°! ÐžÐ´Ð½Ð¾ Ð¸Ð· Ñ‡Ð¸ÑÐµÐ» Ð²Ð½Ðµ Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ð°!";
-       }
-       else
-       {
-        if (-20 < x1 < 20) {
-            switch (x1 % 100) {
-            case 10: cout << "Ð´ÐµÑÑÑ‚ÑŒ "; break;
-            case 11: cout << "Ð¾Ð´Ð¸Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 12: cout << "Ð´Ð²ÐµÐ½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 13: cout << "Ñ‚Ñ€Ð¸Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 14: cout << "Ñ‡ÐµÑ‚Ñ‹Ñ€Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 15: cout << "Ð¿ÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 16: cout << "ÑˆÐµÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 17: cout << "ÑÐµÐ¼Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 18: cout << "Ð²Ð¾ÑÐµÐ¼Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 19: cout << "Ð´ÐµÐ²ÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
+    {
+        std::wcout << L"Îøèáêà! Îäíî èç ÷èñåë âíå äèàïàçîíà!";
+    }
+    else
+    {
+        if (ax1 < 0)
+        {
+            std::wcout << L"ìèíóñ ";
+            ax1 = x1 * -1;
+        }
+        if (ax1 / 10 == 1) {
+
+            switch (ax1 % 10) {
+            case 1: wcout << L"îäèíàäöàòü "; break;
+            case 2: wcout << L"äâåíàäöàòü "; break;
+            case 3: wcout << L"òðèíàäöàòü "; break;
+            case 4: wcout << L"÷åòûðíàäöàòü "; break;
+            case 5: wcout << L"ïÿòíàäöàòü "; break;
+            case 6: wcout << L"øåñòíàäöàòü "; break;
+            case 7: wcout << L"ñåìíàäöàòü "; break;
+            case 8: wcout << L"âîñåìíàäöàòü "; break;
+            case 9: wcout << L"äåâÿòíàäöàòü "; break;
             }
         }
         else {
-            switch (x1 / 10)
+            switch (ax1 / 10)
             {
-            case 2: cout << "Ð´Ð²Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 3: cout << "Ñ‚Ñ€Ð¸Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 4: cout << "ÑÐ¾Ñ€Ð¾Ðº "; break;
-            case 5: cout << "Ð¿ÑÑ‚Ð´ÐµÑÑÑ‚ "; break;
-            case 6: cout << "ÑˆÐµÑÑ‚ÑŒÐ´ÐµÑÑÑ‚ "; break;
-            case 7: cout << "Ð¡ÐµÐ¼ÑŒÐ´ÐµÑÑÑ‚ "; break;
-            case 8: cout << "Ð’Ð¾ÑÐµÐ¼ÑŒÐ´ÐµÑÑÑ‚ "; break;
-            case 9: cout << "Ð”ÐµÐ²ÑÐ½Ð¾ÑÑ‚Ð¾ "; break;
-            }
-           
-                switch (x1 % 10)
-                {
-                case 0: cout << "Ð½Ð¾Ð»ÑŒ "; break;
-                case 1: cout << "Ð¾Ð´Ð¸Ð½ "; break;
-                case 2: cout << "Ð´Ð²Ð° "; break;
-                case 3: cout << "Ñ‚Ñ€Ð¸ "; break;
-                case 4: cout << "Ñ‡ÐµÑ‚Ñ‹Ñ€Ðµ "; break;
-                case 5: cout << "Ð¿ÑÑ‚ÑŒ "; break;
-                case 6: cout << "ÑˆÐµÑÑ‚ÑŒ "; break;
-                case 7: cout << "ÑÐµÐ¼ÑŒ "; break;
-                case 8: cout << "Ð²Ð¾ÑÐµÐ¼ÑŒ "; break;
-                case 9: cout << "Ð´ÐµÐ²ÑÑ‚ÑŒ "; break;
-                }
-            
-        }
-        }
-            
-            if (x1 > x2)
-            {
-                std::cout << "Ð±Ð¾Ð»ÑŒÑˆÐµ ";
-            }
-            else if (x1 < x2)
-            {
-                std::cout << "Ð¼ÐµÐ½ÑŒÑˆÐµ ";
-            }
-            else if (x1 = x2)
-            {
-                std::cout << "Ñ€Ð°Ð²Ð½Ð¾ ";
+            case 1: wcout << L"äåñÿòü "; break;
+            case 2: wcout << L"äâàäöàòü "; break;
+            case 3: wcout << L"òðèäöàòü "; break;
+            case 4: wcout << L"ñîðîê "; break;
+            case 5: wcout << L"ïÿòüäåñÿò "; break;
+            case 6: wcout << L"øåñòüäåñÿò "; break;
+            case 7: wcout << L"Ñåìüäåñÿò "; break;
+            case 8: wcout << L"âîñåìüäåñÿò "; break;
+            case 9: wcout << L"Äåâÿíîñòî "; break;
             }
 
-            switch ((x2 % 100) / 10)
+            switch (ax1 % 10)
             {
-            case 20: cout << "Ð´Ð²Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 30: cout << "Ñ‚Ñ€Ð¸Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-            case 40: cout << "ÑÐ¾Ñ€Ð¾Ðº "; break;
-            case 50: cout << "Ð¿ÑÑ‚Ð´ÐµÑÑÑ‚ "; break;
-            case 60: cout << "ÑˆÐµÑÑ‚ÑŒÐ´ÐµÑÑÑ‚ "; break;
-            case 70: cout << "Ð¡ÐµÐ¼ÑŒÐ´ÐµÑÑÑ‚ "; break;
-            case 80: cout << "Ð’Ð¾ÑÐµÐ¼ÑŒÐ´ÐµÑÑÑ‚ "; break;
-            case 90: cout << "Ð”ÐµÐ²ÑÐ½Ð¾ÑÑ‚Ð¾ "; break;
+            case 0: wcout << L"íîëü "; break;
+            case 1: wcout << L"îäèí "; break;
+            case 2: wcout << L"äâà "; break;
+            case 3: wcout << L"òðè "; break;
+            case 4: wcout << L"÷åòûðå "; break;
+            case 5: wcout << L"ïÿòü "; break;
+            case 6: wcout << L"øåñòü "; break;
+            case 7: wcout << L"ñåìü "; break;
+            case 8: wcout << L"âîñåìü "; break;
+            case 9: wcout << L"äåâÿòü "; break;
             }
 
-            if (x2 % 100 >= 10 & x2 % 100 < 20) {
-                switch (x2 % 100) {
-                case 10: cout << "Ð´ÐµÑÑÑ‚ÑŒ "; break;
-                case 11: cout << "Ð¾Ð´Ð¸Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                case 12: cout << "Ð´Ð²ÐµÐ½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                case 13: cout << "Ñ‚Ñ€Ð¸Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                case 14: cout << "Ñ‡ÐµÑ‚Ñ‹Ñ€Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                case 15: cout << "Ð¿ÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                case 16: cout << "ÑˆÐµÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                case 17: cout << "ÑÐµÐ¼Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                case 18: cout << "Ð²Ð¾ÑÐµÐ¼Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                case 19: cout << "Ð´ÐµÐ²ÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÑŒ "; break;
-                }
-            }
-            else {
-                switch (x2 % 10)
-                {
-                case 0: cout << "Ð½Ð¾Ð»ÑŒ "; break;
-                case 1: cout << "Ð¾Ð´Ð¸Ð½ "; break;
-                case 2: cout << "Ð´Ð²Ð° "; break;
-                case 3: cout << "Ñ‚Ñ€Ð¸ "; break;
-                case 4: cout << "Ñ‡ÐµÑ‚Ñ‹Ñ€Ðµ "; break;
-                case 5: cout << "Ð¿ÑÑ‚ÑŒ "; break;
-                case 6: cout << "ÑˆÐµÑÑ‚ÑŒ "; break;
-                case 7: cout << "ÑÐµÐ¼ÑŒ "; break;
-                case 8: cout << "Ð²Ð¾ÑÐµÐ¼ÑŒ "; break;
-                case 9: cout << "Ð´ÐµÐ²ÑÑ‚ÑŒ "; break;
-                }
-            }
-        
-   
-            return EXIT_SUCCESS;
         }
+
+        if (x1 > x2)
+        {
+            std::wcout << L"áîëüøå ";
+        }
+        else if (x1 < x2)
+        {
+            std::wcout << L"ìåíüøå ";
+        }
+        else if (x1 = x2)
+        {
+            std::wcout << L"ðàâíî ";
+        }
+
+        if (ax2 < 0)
+        {
+            std::wcout << L"ìèíóñ ";
+            ax2 = x2 * -1;
+        }
+        if (ax2 / 10 == 1) {
+
+            switch (ax2 % 10) {
+            case 1: wcout << L"îäèíàäöàòü "; break;
+            case 2: wcout << L"äâåíàäöàòü "; break;
+            case 3: wcout << L"òðèíàäöàòü "; break;
+            case 4: wcout << L"÷åòûðíàäöàòü "; break;
+            case 5: wcout << L"ïÿòíàäöàòü "; break;
+            case 6: wcout << L"øåñòíàäöàòü "; break;
+            case 7: wcout << L"ñåìíàäöàòü "; break;
+            case 8: wcout << L"âîñåìíàäöàòü "; break;
+            case 9: wcout << L"äåâÿòíàäöàòü "; break;
+            }
+        }
+        else {
+            switch (ax2 / 10)
+            {
+            case 1: wcout << L"äåñÿòü "; break;
+            case 2: wcout << L"äâàäöàòü "; break;
+            case 3: wcout << L"òðèäöàòü "; break;
+            case 4: wcout << L"ñîðîê "; break;
+            case 5: wcout << L"ïÿòüäåñÿò "; break;
+            case 6: wcout << L"øåñòüäåñÿò "; break;
+            case 7: wcout << L"Ñåìüäåñÿò "; break;
+            case 8: wcout << L"âîñåìüäåñÿò "; break;
+            case 9: wcout << L"Äåâÿíîñòî "; break;
+            }
+            switch (ax2 % 10)
+            {
+            case 0: wcout << L"íîëü "; break;
+            case 1: wcout << L"îäèí "; break;
+            case 2: wcout << L"äâà "; break;
+            case 3: wcout << L"òðè "; break;
+            case 4: wcout << L"÷åòûðå "; break;
+            case 5: wcout << L"ïÿòü "; break;
+            case 6: wcout << L"øåñòü "; break;
+            case 7: wcout << L"ñåìü "; break;
+            case 8: wcout << L"âîñåìü "; break;
+            case 9: wcout << L"äåâÿòü "; break;
+            }
+
+        }
+    }
+    return EXIT_SUCCESS;
+}
