@@ -3,22 +3,22 @@
 #include <Windows.h>
 
 int main() {
-	setlocale(LC_CTYPE, "ru_RU.UTF-8");
-	SetConsoleCP(CP_UTF8);
-	SetConsoleOutputCP(CP_UTF8);
+	setlocale(LC_CTYPE, "rus");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
 	int a, b, c, max, sred, min;
 
-	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: " << std::endl;
+	std::cout << "Ââåäèòå ïåðâîå ÷èñëî: " << std::endl;
 	std::cin >> a;
-	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: " << std::endl;
+	std::cout << "Ââåäèòå âòîðîå ÷èñëî: " << std::endl;
 	std::cin >> b;
-	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚Ñ€ÐµÑ‚ÑŒÐµ Ñ‡Ð¸ÑÐ»Ð¾: " << std::endl;
+	std::cout << "Ââåäèòå òðåòüå ÷èñëî: " << std::endl;
 	std::cin >> c;
 
-	max = (a >= b && a >= c) ? a : b >= c ? b : c;
-	min = (a <= b && a <= c) ? a : b <= c ? b : c;
-	sred = (max > a && a >= min) ? a : (max > b && b > min) ? b : c;
+	min = (a < b && a < c) ? a : (b < c) ? b : c;
+	max = (a > b && a > c) ? a : (b > c) ? b : c;
+	sred = (max > a && a > min) ? a : (max > b && b > min) ? b : c;
 
 	std::cout << max << "\t" << sred << "\t" << min << std::endl;
 
